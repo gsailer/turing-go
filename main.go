@@ -101,7 +101,7 @@ func compute(instructions []Instruction, t TuringTape) TuringTape {
 
 func main() {
 	args := os.Args[1:]
-	if len(args) < 2 {
+	if len(args) != 2 {
 		fmt.Println("Please give a file and tape content: ./turing-go [filepath] [tape]")
 		os.Exit(1)
 	}
