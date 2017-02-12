@@ -1,0 +1,44 @@
+# Example turing instructions
+# A,B,C .... -> states
+# F -> final state
+# 0,1,* -> alphabet of the turing machine
+# R -> move right on band
+# L -> move left on band
+# N -> no operation on band
+instructions:
+-
+  current-state: A
+  symbol-read: 0
+  symbol-write: 0
+  head: R
+  next-state: A
+-
+  current-state: A
+  symbol-read: 1
+  symbol-write: 1
+  head: R
+  next-state: A
+-
+  current-state: A
+  symbol-read: "*"
+  symbol-write: "*"
+  head: L
+  next-state: B
+-  
+  current-state: B
+  symbol-read: 0
+  symbol-write: 1
+  head: N
+  next-state: F
+-
+  current-state: B
+  symbol-read: 1
+  symbol-write: 0
+  head: L
+  next-state: B
+-  
+  current-state: A
+  symbol-read: "*"
+  symbol-write: 1
+  head: N
+  next-state: F
