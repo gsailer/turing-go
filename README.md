@@ -12,3 +12,6 @@ You have to pass the executable the instruction-file and the tape content as arg
 	
 	turing-go [instruction-file] [tape]
 	
+The Tape has to be passed with four leading and trailing stars like:
+	
+	****1001****
