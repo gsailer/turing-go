@@ -46,7 +46,7 @@ func parseInstructions(path string) ([]Instruction, error) {
 	return instructions.Instruction, nil
 }
 
-func moveAndWrite(instructions []Instruction, t TuringTape, symbol string) (int, string) {
+func moveAndWrite(instructions []Instruction, t *TuringTape, symbol string) {
 	for _, ins := range instructions {
 		if ins.CurrentState == t.State && ins.SymbolR == symbol {
 			fmt.Println("Symbol: ", symbol)
@@ -69,12 +69,10 @@ func moveAndWrite(instructions []Instruction, t TuringTape, symbol string) (int,
 			}
 		}
 	}
-	return t.Position, t.State
 }
 
 func compute(instructions []Instruction, t TuringTape) TuringTape {
-	var symbol, state string
-	var pos int
+	var symbol string
 	for {
 		if t.State == "F" {
 			return t
@@ -84,17 +82,15 @@ func compute(instructions []Instruction, t TuringTape) TuringTape {
 		symbol = t.Tape[t.Position]
 		switch symbol {
 		case "0":
-			pos, state = moveAndWrite(instructions, t, symbol)
+			moveAndWrite(instructions, &t, symbol)
 			break
 		case "1":
-			pos, state = moveAndWrite(instructions, t, symbol)
+			moveAndWrite(instructions, &t, symbol)
 			break
 		case "*":
-			pos, state = moveAndWrite(instructions, t, symbol)
+			moveAndWrite(instructions, &t, symbol)
 			break
 		}
-		t.Position = pos
-		t.State = state
 	}
 	return t
 }
