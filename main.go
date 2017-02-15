@@ -116,5 +116,5 @@ func main() {
 	}
 	set, steps := compute(instructions, tape)
 	fmt.Println("-----------------------------------------------")
-	fmt.Printf("Finished after %d steps: %v", steps, set)
+	fmt.Printf("Finished after %d steps: %v\n", steps, set)
 }
