@@ -71,11 +71,12 @@ func moveAndWrite(instructions []Instruction, t *TuringTape, symbol string) {
 	}
 }
 
-func compute(instructions []Instruction, t TuringTape) TuringTape {
+func compute(instructions []Instruction, t TuringTape) (TuringTape, int) {
 	var symbol string
+	var steps int
 	for {
 		if t.State == "F" {
-			return t
+			return t, steps
 		}
 		fmt.Println("-----------------------------------------------")
 		fmt.Printf("State: %s\nPosition: %d\n", t.State, t.Position)
@@ -91,8 +92,9 @@ func compute(instructions []Instruction, t TuringTape) TuringTape {
 			moveAndWrite(instructions, &t, symbol)
 			break
 		}
+		steps++
 	}
-	return t
+	return t, steps
 }
 
 func main() {
@@ -112,7 +114,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	set := compute(instructions, tape)
+	set, steps := compute(instructions, tape)
 	fmt.Println("-----------------------------------------------")
-	fmt.Println("Finished: ", set)
+	fmt.Printf("Finished after %d steps: %v", steps, set)
 }
